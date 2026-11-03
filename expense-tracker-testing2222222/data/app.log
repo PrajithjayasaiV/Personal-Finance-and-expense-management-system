@@ -1,0 +1,4 @@
+2026-11-03 05:35:45,051 INFO database: Database ready at C:\Users\prajaitha puja\Downloads\expense-tracker-testing2222222\data\expense_tracker.db
+2026-11-03 05:36:31,064 INFO services.auth_service: User registered (id=1)
+2026-11-03 09:19:47,558 INFO services.auth_service: Failed sign-in attempt
+2026-11-03 09:19:51,137 INFO services.auth_service: Failed sign-in attempt

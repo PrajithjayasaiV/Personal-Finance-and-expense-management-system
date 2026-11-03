@@ -1,0 +1,63 @@
+SMART FINANCE PROJECT UPDATE
+===========================
+
+WHAT THIS UPDATE ADDS
+---------------------
+1. A cleaner, more colorful UI across the app with subtle CSS page/card animations,
+   hover states, improved spacing, buttons, tabs, cards and a matching theme.
+2. A simplified Dashboard focused on income, expenses, budget usage, safe-to-spend,
+   spending categories, spending trend, budgets, savings goals, insights and recent activity.
+3. A new sidebar page: Income change plan.
+   - Compares the five complete calendar months before the selected effective month.
+   - Shows month-by-month recorded income and expenses.
+   - Shows each category's five-month total, monthly average, revised limit and suggested cut.
+   - Protects Food/Groceries, Rent, Utilities, Education, Healthcare and Family by default.
+   - Scales flexible categories to fit the new monthly income after reserve and commitments.
+   - Includes a printable HTML report. Open it in Chrome, press Ctrl+P, then Save as PDF.
+   - Can optionally create/update category budgets after explicit confirmation.
+4. An automatic budget panel beside the manual budget form.
+   - Unlocks only after expenses exist in five distinct completed months before the target month.
+   - Calculates category limits from the average actual spending in those five months.
+   - The user can edit each recommendation and choose which ones to apply.
+5. A possible income-drop warning on the Dashboard when the current month's recorded
+   income is at least 5% below the previous five-month average and all five baseline
+   months have recorded income.
+6. Retains the earlier category-form key correction in views/2_Transactions.py.
+
+FILES IN THIS UPDATE
+--------------------
+components/layout.py                         (replace)
+components/navigation.py                     (replace)
+views/1_Dashboard.py                         (replace)
+views/2_Transactions.py                      (replace; includes earlier form-key fix)
+views/3_Budgets.py                            (replace)
+views/9_Income_Change_Plan.py                (NEW)
+services/adaptive_planning_service.py         (NEW)
+.streamlit/config.toml                       (replace)
+tests/test_adaptive_planning.py               (NEW; tests for the new planning logic)
+
+HOW TO APPLY
+------------
+1. Stop Streamlit in the terminal with Ctrl+C.
+2. Extract this ZIP into the existing project root folder (the folder containing app.py
+   and requirements.txt). Allow Windows to merge the folders and replace matching files.
+3. Do not delete or replace the data folder, data/expense_tracker.db, .venv, or any other
+   files not listed above.
+4. No new Python packages are required.
+5. Start the app from the project root:
+   .\.venv\Scripts\python.exe -m streamlit run app.py
+
+IMPORTANT BEHAVIOUR
+-------------------
+- The app is not connected to a bank or payroll provider. A salary drop can be detected
+  automatically only after the reduced income is recorded as an income transaction.
+  The warning says POSSIBLE decrease because a partial month's entry can be misleading.
+- The salary planner compares total recorded income, not a bank-verified salary slip.
+  Enter the new take-home monthly income in the planner and review the suggested limits.
+- The planner never edits past transactions. Applying it changes only category budgets
+  in the selected effective month and only after the user confirms.
+- Auto budgets are based on recorded expenses, not on manually entered budget limits.
+- Dashboard items moved out of the main view (Net cash flow, Savings rate, standalone
+  recorded balance, income-vs-expense chart and month-to-date comparison) remain in the
+  deeper Analytics/Reports or the Safe-to-spend calculation where relevant; their data
+  and calculations were not deleted from the application.
